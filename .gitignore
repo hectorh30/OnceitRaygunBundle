@@ -1,0 +1,7 @@
+syntax: glob
+
+# OS filesystem metadata
+.DS_Store*
+ethumbs.db
+Icon?
+Thumbs.db
