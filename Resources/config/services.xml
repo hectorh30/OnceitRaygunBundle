@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="onceit_raygun.exception_listener.class">Onceit\RaygunBundle\Listener\RaygunExceptionListener</parameter>
+        <parameter key="onceit_raygun.raygun.class">Raygun4php\RaygunClient</parameter>
+        <parameter key="onceit_raygun.api_key"></parameter>
+        <parameter key="onceit_raygun.async_sending">true</parameter>
+        <parameter key="onceit_raygun.debug">false</parameter>
+    </parameters>
+
+    <services>
+        <service id="onceit_raygun.raygun" class="%onceit_raygun.raygun.class%">
+            <argument>%onceit_raygun.api_key%</argument>
+            <argument>%onceit_raygun.async_sending%</argument>
+            <argument>%onceit_raygun.debug%</argument>
+        </service>
+
+        <service id="onceit_raygun.exception_listener" class="%onceit_raygun.exception_listener.class%">
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
+            <tag name="kernel.event_listener" event="console.exception" method="onConsoleException" />
+            <argument type="service" id="onceit_raygun.raygun"/>
+        </service>
+    </services>
+
+</container>

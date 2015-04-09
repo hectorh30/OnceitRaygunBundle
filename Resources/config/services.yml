@@ -1,13 +1,14 @@
 parameters:
     onceit_raygun.exception_listener.class: Onceit\RaygunBundle\Listener\RaygunExceptionListener
     onceit_raygun.raygun.class:             Raygun4php\RaygunClient
-    onceit_raygun.apikey:                   ~
+    onceit_raygun.api_key:                  ~
     onceit_raygun.async_sending:            ~
     onceit_raygun.debug:                    ~
 
 services:
     onceit_raygun.raygun:
         class:     "%onceit_raygun.raygun.class%"
+        arguments: [onceit_raygun.api_key, onceit_raygun.async_sending, onceit_raygun.debug]
     onceit_raygun.exception_listener:
         class:     "%onceit_raygun.exception_listener.class%"
         arguments: ["@onceit_raygun.raygun"]
