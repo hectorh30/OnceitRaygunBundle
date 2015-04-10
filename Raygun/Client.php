@@ -15,6 +15,6 @@ class Client extends RaygunClient
             return;
         }
 
-        return call_user_func_array('parent::__construct', func_get_args());
+        return parent::Send($message);
     }
 }
