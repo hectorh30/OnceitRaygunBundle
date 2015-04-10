@@ -24,5 +24,9 @@ class OnceitRaygunExtension extends Extension
 
         $loader = new Loader\XMLFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container->setParameter('onceit_raygun.api_key', $config['api_key']);
+        $container->setParameter('onceit_raygun.async_sending', $config['async_sending']);
+        $container->setParameter('onceit_raygun.debug', $config['debug']);
     }
 }
