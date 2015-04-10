@@ -18,7 +18,6 @@
     },
     "minimum-stability": "dev",
     "autoload": {
-        "psr-4": { "Onceit\\RaygunBundle": "" }
-    },
-    "target-dir": "Onceit/RaygunBundle"
+        "psr-4": { "Onceit\\RaygunBundle\\": "" }
+    }
 }
