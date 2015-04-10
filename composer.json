@@ -7,18 +7,18 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Keri Henare",
-            "email": "keri@henare.co.nz"
+            "name": "Onceit",
+            "email": "hi@onceit.co.nz"
         }
     ],
     "require": {
-        "php": ">=5.3.0",
+        "php": ">=5.4.0",
         "mindscape/raygun4php": "1.*",
         "symfony/framework-bundle": "~2.1"
     },
-    "autoload": {
-        "psr-0": { "Onceit\\RaygunBundle": "" }
-    },
     "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": { "Onceit\\RaygunBundle": "" }
+    },
     "target-dir": "Onceit/RaygunBundle"
 }

@@ -2,15 +2,13 @@
 
 namespace Onceit\RaygunBundle\Listener;
 
-use Symfony\Component\Console\Event\ConsoleExceptionEvent,
-    Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent,
-    Symfony\Component\HttpKernel\Exception\HttpException;
-
+use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Raygun4php\RaygunClient;
 
 class RaygunExceptionListener
 {
-    
+
     protected $client;
 
     /**
@@ -20,7 +18,7 @@ class RaygunExceptionListener
     {
         $this->client = $client;
     }
-    
+
     /**
      * @param \Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent $event
      */
@@ -33,15 +31,6 @@ class RaygunExceptionListener
         }
 
         $this->client->SendException($exception);
-        
-    }
 
-    /**
-     * @param \Symfony\Component\Console\Event\ConsoleExceptionEvent $event
-     */
-    public function onConsoleException(ConsoleExceptionEvent $event)
-    {
-        $this->client->SendException($exception);   
     }
-    
 }
