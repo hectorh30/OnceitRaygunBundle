@@ -8,15 +8,17 @@ use Raygun4php\RaygunClient;
 
 class RaygunExceptionListener
 {
-
     protected $client;
+
+    protected $tags;
 
     /**
      * @param \Raygun4php\RaygunClient
      */
-    public function __construct(RaygunClient $client)
+    public function __construct(RaygunClient $client, $tags = array())
     {
         $this->client = $client;
+        $this->tags = $tags;
     }
 
     /**
@@ -30,7 +32,9 @@ class RaygunExceptionListener
             return;
         }
 
-        $this->client->SendException($exception);
-
+        $this->client->SendException(
+            $exception,
+            $this->tags ? : null
+        );
     }
 }

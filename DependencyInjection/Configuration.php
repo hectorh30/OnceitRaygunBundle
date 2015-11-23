@@ -24,6 +24,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('api_key')->defaultNull()->end()
                 ->booleanNode('async_sending')->defaultValue(true)->end()
                 ->booleanNode('debug')->defaultValue(false)->end()
+                ->arrayNode('tags')
+                    ->prototype('scalar')
+                ->end()
             ->end();
 
         // Here you should define the parameters that are allowed to

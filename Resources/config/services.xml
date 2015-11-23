@@ -8,6 +8,7 @@
         <parameter key="onceit_raygun.api_key">null</parameter>
         <parameter key="onceit_raygun.async_sending">true</parameter>
         <parameter key="onceit_raygun.debug">false</parameter>
+        <parameter key="onceit_raygun.tags" type="collection"></parameter>
 
         <parameter key="onceit_raygun.shutdown_listener.class">Onceit\RaygunBundle\Listener\ShutdownListener</parameter>
         <parameter key="onceit_raygun.exception_listener.class">Onceit\RaygunBundle\Listener\RaygunExceptionListener</parameter>
@@ -24,11 +25,13 @@
         <service id="onceit_raygun.exception_listener" class="%onceit_raygun.exception_listener.class%">
             <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException" />
             <argument type="service" id="onceit_raygun.raygun"/>
+            <argument>%onceit_raygun.tags%</argument>
         </service>
 
         <service id="onceit_raygun.shutdown_listener" class="%onceit_raygun.shutdown_listener.class%">
             <tag name="kernel.event_listener" event="kernel.controller" method="register" />
             <argument type="service" id="onceit_raygun.raygun" />
+            <argument>%onceit_raygun.tags%</argument>
         </service>
     </services>
 

@@ -10,12 +10,15 @@ class ShutdownListener
 {
     protected $client;
 
+    protected $tags;
+
     /**
      * @param \Raygun4php\RaygunClient
      */
-    public function __construct(RaygunClient $client)
+    public function __construct(RaygunClient $client, $tags = array())
     {
         $this->client = $client;
+        $this->tags = $tags;
     }
 
     /**
@@ -38,6 +41,12 @@ class ShutdownListener
             return;
         }
 
-        $this->client->SendError($error['type'], $error['message'], $error['file'], $error['line']);
+        $this->client->SendError(
+            $error['type'],
+            $error['message'],
+            $error['file'],
+            $error['line'],
+            $this->tags ? : null
+        );
     }
 }
