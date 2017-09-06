@@ -3,6 +3,8 @@
 namespace Onceit\RaygunBundle\Raygun;
 
 use Raygun4php\RaygunClient;
+use FOS\UserBundle\Model\UserInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class Client extends RaygunClient
 {
@@ -16,5 +18,22 @@ class Client extends RaygunClient
         }
 
         return parent::Send($message);
+    }
+
+    public function setUserFromTokenStorage(TokenStorage $tokenStorage)
+    {
+        $user = $tokenStorage->getToken()->getUser();
+
+        if (!($user instanceof UserInterface)) {
+            return;
+        }
+
+        return parent::SetUser(
+            $user->getUsernameCanonical(),
+            $user->getUsernameCanonical(),
+            $user->getUsernameCanonical(),
+            $user->getEmail(),
+            false
+        );
     }
 }

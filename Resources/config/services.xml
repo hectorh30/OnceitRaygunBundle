@@ -20,6 +20,10 @@
             <argument>%onceit_raygun.api_key%</argument>
             <argument>%onceit_raygun.async_sending%</argument>
             <argument>%onceit_raygun.debug%</argument>
+             
+             <call method="setUserFromTokenStorage">
+                <argument type="service" id="security.token_storage" />
+            </call>
         </service>
 
         <service id="onceit_raygun.exception_listener" class="%onceit_raygun.exception_listener.class%">
