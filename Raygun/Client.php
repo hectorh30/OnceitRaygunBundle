@@ -22,9 +22,9 @@ class Client extends RaygunClient
 
     public function setUserFromTokenStorage(TokenStorage $tokenStorage)
     {
-        $user = $tokenStorage->getToken()->getUser();
+        $user = $tokenStorage->getToken() ? $tokenStorage->getToken()->getUser() : false;
 
-        if (!($user instanceof UserInterface)) {
+        if (!$user || !($user instanceof UserInterface)) {
             return;
         }
 
