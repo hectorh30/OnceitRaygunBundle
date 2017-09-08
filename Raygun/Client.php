@@ -19,21 +19,4 @@ class Client extends RaygunClient
 
         return parent::Send($message);
     }
-
-    public function setUserFromTokenStorage(TokenStorage $tokenStorage)
-    {
-        $user = $tokenStorage->getToken() ? $tokenStorage->getToken()->getUser() : false;
-
-        if (!$user || !($user instanceof UserInterface)) {
-            return;
-        }
-
-        return parent::SetUser(
-            $user->getUsernameCanonical(),
-            $user->getUsernameCanonical(),
-            $user->getUsernameCanonical(),
-            $user->getEmail(),
-            false
-        );
-    }
 }
