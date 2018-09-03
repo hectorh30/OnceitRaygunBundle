@@ -13,6 +13,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
+        "ext-curl": "*",
         "mindscape/raygun4php": "1.*",
         "symfony/framework-bundle": "~2.1"
     },
