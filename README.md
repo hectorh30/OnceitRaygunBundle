@@ -14,6 +14,8 @@ You can also define tags.
 
 Wishlist:
 
-- [ ] Add logging capabilities to perform a 'an error message would be sent at this point'
+- [ ] Add logging capabilities to perform a 'an error message would be sent at this point' or 'an error message was sent at this point'
 
 - [ ] Allow configuration about what kind of exceptions should be thrown
+
+- [ ] Allow customization of a callable that should be _called_ to get the set up on Raygun's client information

@@ -36,4 +36,26 @@ class Client extends RaygunClient
             false
         );
     }
+
+    public function setUserFromRequestStack(
+        \Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface $encoder,
+        \Symfony\Component\HttpFoundation\RequestStack $requestStack
+    ) {
+        $request = $requestStack->getCurrentRequest();
+
+        $token = explode(' ', $request->headers->get('Authorization'));
+
+        // If there is no user it means the request was not authenticated
+        if (!array_filter($token)) {
+            return;
+        }
+
+        $jwt = $encoder->decode($token[1]);
+
+        if (!$jwt) {
+            throw new \LogicException('Invalid token');
+        }
+
+        return parent::SetUser($jwt['username']);
+    }
 }
