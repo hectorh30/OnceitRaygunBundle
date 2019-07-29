@@ -11,6 +11,12 @@
             "email": "hi@onceit.co.nz"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ServirIO/raygun4php"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
         "mindscape/raygun4php": "1.*",
