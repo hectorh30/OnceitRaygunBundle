@@ -28,9 +28,11 @@ class RaygunExceptionListener
     {
         $exception = $event->getException();
 
-        if ($exception instanceof HttpException) {
-            return;
-        }
+        // TODO: We should allow the user to define which type of exceptions get
+        // notified
+        // if ($exception instanceof HttpException) {
+        //     return;
+        // }
 
         $this->client->SendException(
             $exception,

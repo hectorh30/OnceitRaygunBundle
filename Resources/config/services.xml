@@ -20,6 +20,15 @@
             <argument>%onceit_raygun.api_key%</argument>
             <argument>%onceit_raygun.async_sending%</argument>
             <argument>%onceit_raygun.debug%</argument>
+
+             <call method="setUserFromTokenStorage">
+                <argument type="service" id="security.token_storage" />
+            </call>
+
+            <call method="setUserFromRequestStack">
+                <argument type="service" id="lexik_jwt_authentication.encoder" />
+                <argument type="service" id="request_stack" />
+            </call>
         </service>
 
         <service id="onceit_raygun.exception_listener" class="%onceit_raygun.exception_listener.class%">
@@ -34,5 +43,4 @@
             <argument>%onceit_raygun.tags%</argument>
         </service>
     </services>
-
 </container>
